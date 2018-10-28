@@ -29,9 +29,15 @@ public class MainController {
     @PostMapping("/addPost")
     public String addPost(@RequestParam(value = "title") String title,
                           @RequestParam(value = "content") String content) {
-        Post post = new Post(title,content);
+        Post post = new Post(title, content);
         postRepository.save(post);
         System.out.println("Params: " + title + ", " + content);
         return "index";
+    }
+
+    @GetMapping("/posts")
+    public String postsPage(Model model) {
+        model.addAttribute("posts", postRepository.findAll());
+        return "posts";
     }
 }
