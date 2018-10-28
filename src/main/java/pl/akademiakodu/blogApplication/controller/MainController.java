@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.akademiakodu.blogApplication.model.Post;
@@ -38,6 +39,12 @@ public class MainController {
     @GetMapping("/posts")
     public String postsPage(Model model) {
         model.addAttribute("posts", postRepository.findAll());
+        return "posts";
+    }
+
+    @GetMapping("/posts/{title}")
+    public String postsByTitle(@PathVariable String title, Model model) {
+        model.addAttribute("posts", postRepository.findAllByTitleContains(title));
         return "posts";
     }
 }
