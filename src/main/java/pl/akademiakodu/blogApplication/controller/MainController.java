@@ -20,6 +20,10 @@ public class MainController {
     @Autowired
     PostRepository postRepository;
 
+    public MainController(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
+
     @GetMapping("/")
     public String getIndexPage(Model model) {
         model.addAttribute("name", "Daniel");
@@ -36,7 +40,7 @@ public class MainController {
                           @RequestParam(value = "content") String content) {
         Post post = new Post(title, content);
         PostComment postComment = new PostComment();
-        postComment.setComment(title);
+        post.addComment(postComment);
         postRepository.save(post);
         return "index";
     }

@@ -33,7 +33,7 @@ public class Post {
 
     }
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "postId")
     List<PostComment> comments = new ArrayList<>();
 
