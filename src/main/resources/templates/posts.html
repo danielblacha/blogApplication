@@ -5,7 +5,7 @@
     <title>Mini blog</title>
 </head>
 <body>
-
+<div th:replace="~{includes/searchbar :: searchForm}"></div>
 <h1>Moje posty</h1>
 <div th:each="post : ${posts}">
     <h2 th:text="${post.title}"></h2>
