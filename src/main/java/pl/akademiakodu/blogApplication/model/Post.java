@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -31,4 +32,8 @@ public class Post {
     public Post() {
 
     }
+
+    @OneToMany
+    @JoinColumn(name = "postId")
+    List<PostComment> comments;
 }
