@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.akademiakodu.blogApplication.model.Post;
+import pl.akademiakodu.blogApplication.model.PostComment;
 import pl.akademiakodu.blogApplication.repository.PostRepository;
 
 import java.util.List;
@@ -34,8 +35,9 @@ public class MainController {
     public String addPost(@RequestParam(value = "title") String title,
                           @RequestParam(value = "content") String content) {
         Post post = new Post(title, content);
+        PostComment postComment = new PostComment();
+        postComment.setComment(title);
         postRepository.save(post);
-        System.out.println("Params: " + title + ", " + content);
         return "index";
     }
 

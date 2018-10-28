@@ -1,9 +1,6 @@
 package pl.akademiakodu.blogApplication.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -16,6 +13,18 @@ public class PostComment {
     private String comment;
 
     private Date added = new Date();
+
+    @ManyToOne
+    @JoinColumn(name = "postId")
+    private Post post;
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
 
     public Long getId() {
         return id;
