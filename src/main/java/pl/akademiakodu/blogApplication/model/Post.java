@@ -36,4 +36,12 @@ public class Post {
     @OneToMany
     @JoinColumn(name = "postId")
     List<PostComment> comments;
+
+    public List<PostComment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<PostComment> comments) {
+        this.comments = comments;
+    }
 }
